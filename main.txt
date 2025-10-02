@@ -1,0 +1,48 @@
+1. Generative AI vs Agentic AI
+    - genrative ai : class of ai models that can create new content - text, images, videos, audio or code, just like created by human
+    - examples of generative ai are llm based apps like chatgpt, diffusion models for images, code generation llms like codellama, tts model like elevenlabs,
+    video generation model like sora
+     
+    - comparision between generative ai vs traditional ai
+    - traditional ai is about finding patterns in data and giving predictions like classification problem(checking email is spam or not)
+    - generative ai is about learning the distribution of data so that i can generate a new sample from it.
+
+    - application areas: generating text like human, software development, customer support, education, designing, etc
+
+    - generative ai is about creating content, agentic ai is about solving a goal
+
+2. Agentic AI
+    - type of ai that takes up a task from a user and work towards completing it on its own, with
+     minimal human guidance. it plans, take actions, adapt to changes, and seek help only when necessary
+
+    - key characteristics
+    
+    - autonomous: ability to make decision on its own to achieve a given goal, without needing step-to-step human interaction. autonomy in multiple facets, execution, decision making and tool usage.
+
+    autonomy can be controlled, like permission scoping, human interaction, override controls, policies(defining hard rules and boundaries). autonomy can be dangerous
+
+    - goal oriented: goals can come with contraints, goals are stored in core memory, we can change the goal midway
+
+    - planning: agents ability to break down a goal into structured sequence of actions or subgoals and decide the best path to achieve the desired outcome.
+
+    - reasoning: cognitive process through which an agentic ai system interprets information, 
+    draws conclusion and make decisions- both while planning ahead and while executing actions in real time.
+
+    - adaptibility: ability of an agent to modify its plan, strategies or action in response to unexpected conditions, all while staying aligned with the goal.
+
+    - context awareness: agent;s ability to understand, retain and utilize relevant information from the ongoing task, past interactions, user preferences to make better decisions throughout a multi-step process.
+    
+    types of context: context awareness implemented through memory, short term memory and long term memory 
+
+    - core high level components of an agentic ai
+    1. brain (mainly llm), it does goal interpretation, planning, reasoning, tool selection, communication b/w human and agent
+    2. orhestrator: (executes the plan), task sequencing, conditional routing, retry logic, looping and iteration, delegation
+    3. tools: external actions, knowledge base access
+    4. memory: short-term memory, long-term memory, state tracking
+    5. supervisor: (helps in communicating with agent with human), approval requests(agent checks with human before high-risk actions), guardrails enforcement, edge case escalation
+
+3. LangGraph, why it exists, diff between langchain and langgraph (when to use what)
+    - what is langchain
+    1. open sourcee library which simplifies the process of building llm based apps.
+    2. it consists of multiple components: model, prompts and retrievers, chains(biggest offering of langchain)
+    3. what can we do with langchain: chatbots,text summarizer, multi-step workflows, RAG apps, basic level agents
