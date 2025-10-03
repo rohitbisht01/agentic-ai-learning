@@ -8,7 +8,6 @@
     - generative ai is about learning the distribution of data so that i can generate a new sample from it.
 
     - application areas: generating text like human, software development, customer support, education, designing, etc
-
     - generative ai is about creating content, agentic ai is about solving a goal
 
 2. Agentic AI
@@ -16,9 +15,7 @@
      minimal human guidance. it plans, take actions, adapt to changes, and seek help only when necessary
 
     - key characteristics
-    
     - autonomous: ability to make decision on its own to achieve a given goal, without needing step-to-step human interaction. autonomy in multiple facets, execution, decision making and tool usage.
-
     autonomy can be controlled, like permission scoping, human interaction, override controls, policies(defining hard rules and boundaries). autonomy can be dangerous
 
     - goal oriented: goals can come with contraints, goals are stored in core memory, we can change the goal midway
@@ -31,7 +28,6 @@
     - adaptibility: ability of an agent to modify its plan, strategies or action in response to unexpected conditions, all while staying aligned with the goal.
 
     - context awareness: agent;s ability to understand, retain and utilize relevant information from the ongoing task, past interactions, user preferences to make better decisions throughout a multi-step process.
-    
     types of context: context awareness implemented through memory, short term memory and long term memory 
 
     - core high level components of an agentic ai
@@ -46,3 +42,56 @@
     1. open sourcee library which simplifies the process of building llm based apps.
     2. it consists of multiple components: model, prompts and retrievers, chains(biggest offering of langchain)
     3. what can we do with langchain: chatbots,text summarizer, multi-step workflows, RAG apps, basic level agents
+
+    - diff between workflow and agents: workflows are systems where llms and tools are 
+    orchestrated throough predefined code paths, where agents are systems where llms dynamically 
+    direct their own processes and tool usage to accomplish the task
+
+    - when taking about implementing a complex workflow using langchain, there are couple of bottleneck we can face, as langchain is used when implemting linear workflows, not when there is 
+    conditional branch, 
+    loops, 
+    frequent jumps, 
+    state handling is difficult in langchain, event driven execution(there are two way of ececution one is sequential and another is event driven, in langchain it is sequential, in case of langgraph, wheree we can trigger external tools in between the execution)
+    langchain is not build for event driven execution, instead it is build for simple sequential eexecution
+    fault tolerance: in case of langchain, if there is any fault or error during execution then the whole process needs to start from begining, there is no concept of fault tolerance, in case of langgraph there is built in fault tolerance, there are two type of fault tolreace, small(error in node) and large(server is down), in case of small error we can retry it again, in case of large fault tolerance, in langgraph there is concept called reecovery, if serever is down and the execution is in middle then in that situation we cna resume thee process from that node again (how do we implement it, htere checkpointer concept comes into picture) as this whole process we are maintaing the state(snapshot stored after every node execution) 
+    human in the loop problem: 
+    nested workflows: we are replace a node, build nested workflows(a single node can be complex so we can have a separate workflow for that node), with the help of this we cna build multi-agents(multiple node handling and communicating with each other to achive a single complex task)
+    observability: how easily we can monitor, debug and understand what your workflow is doing at runtime (langsmith helps in monitoring application built using langgraph)
+
+    - in langchain we are chaining while in case of langgraph we are using nodes and edges, maintaining statee is much more easier in langgraph as each node has access to the state, unlike in langchain we need to update it after each response. langchain is stateless and langgraph is stateful
+
+    - langgraph is an orchestration framework that enables u to build stateful, multi-step and event driven workflows using llms. ideal for building single-agent and multi-agent agentic ai apps. we have nodes which are attached to edges making it a complex workflow, langgraph takes care of parallelism, state mgmt, conditional branching, looping, pausing/resuming, and fault recovery
+
+    langgraph is built on top of langchain, it still uses langchain components like ChatOpenAI, PromptTemplate, Retrievers, DocumentLoaders, Tools etc
+
+    LangGraph handles workflow orchestration while langchain provides building blocks for each step in that workflow
+
+4. LangGraph Core Concepts
+    - What is langgraph and its features
+
+    - LLM Workflows
+    1. its a step by step process using which we can build complex LLM apps.
+    2. each step in a workflow is a distinct task - such as prompting, reasoning, tool calling, memory access or decision making.
+    3. workflows can be liner, parallel, branched, or looped, allowing compelx actions like retries, multi-agent communication, or tool-augemented reasoning.
+    4. comming workflows: prompt chaining, routing, parallelization, orchestrator workers, evaluator optimizer
+
+    - Graphs, Nodes and Edges
+    1. node are simple functions which are connected via edges 
+    2. there can be diff types of edges, sequential, parallel, conditional branching or looping edges
+
+    - State is a shared memory that flows through your workflow - it holds all the data being
+     passed between nodes as your graph runs. all the data points are stored as key value pair. each node has access to whole state and state is mutable
+
+    - Reducers: it tells if the state is going to be replace or updated or merged. It defines how
+     updates from nodes are applied to shared state. Each key in the state have its own reducer, which determines whether new data replaces, merges, or adds to the existing value.
+     like if we are building a chat application then we want to add new conversation to previous conversation so that it remembers the context, here we are adding in the state 
+
+    - LangGraph Execution Model
+    1. Model Definition: define state schema, nodes(functions that perform tasks), edges(which node connects to which)
+    2. Compilation: we call .compile() on StateGraph, to check the graph structuree and prepares it for execution
+    3. Invocation: you run the graph with .invoke(initial_state), langgraph sends the inital state as a message to entry node
+    4. Super-steps Begin: execution proceeds in rounds
+    5. Message passiong and node activation: messages are passeed to downstream nodes via edges and nodes that receive messages becomes active for the next round
+    6. Halting Condition: execution stops when no nodes are active and no messages are in transit
+
+5. Sequential Workflows in LangGraph
