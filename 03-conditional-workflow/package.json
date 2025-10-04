@@ -1,0 +1,17 @@
+{
+  "dependencies": {
+    "@langchain/core": "^0.3.78",
+    "@langchain/langgraph": "^0.4.9"
+  },
+  "name": "03-conditional-workflow",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
