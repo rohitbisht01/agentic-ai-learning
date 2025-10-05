@@ -1,14 +1,15 @@
 {
   "dependencies": {
+    "@aws-sdk/client-bedrock-runtime": "^3.901.0",
     "@langchain/core": "^0.3.78",
-    "@langchain/langgraph": "^0.4.9"
+    "@langchain/langgraph": "^0.4.9",
+    "tslab": "^1.0.22"
   },
   "name": "03-conditional-workflow",
   "version": "1.0.0",
   "main": "index.js",
-  "devDependencies": {},
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start:llm": "ts-node llm-review-handing-workflow.ts"
   },
   "keywords": [],
   "author": "",
