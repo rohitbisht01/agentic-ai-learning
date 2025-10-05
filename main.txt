@@ -94,4 +94,11 @@
     5. Message passiong and node activation: messages are passeed to downstream nodes via edges and nodes that receive messages becomes active for the next round
     6. Halting Condition: execution stops when no nodes are active and no messages are in transit
 
-5. Sequential Workflows in LangGraph
+5. Types of workflows in langgraph
+   1. Sequential workflow
+   2. Parallel workflow
+   3. Conditional workflow
+   4. Iterative workflow
+
+6. Persistence
+   - ability to save and restore the state of the workflow over time.
