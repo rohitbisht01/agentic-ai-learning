@@ -1,19 +1,18 @@
 {
-  "name": "02-parallel-workflows",
+  "name": "05-building-chat-bot-using-langgraph",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "ts-node chatbot.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aws-sdk/client-bedrock-runtime": "^3.901.0",
     "@langchain/core": "^0.3.78",
-    "@langchain/langgraph": "^0.4.9",
-    "zod": "^3.25.76"
+    "@langchain/langgraph": "^0.4.9"
   },
   "devDependencies": {
     "@types/node": "^24.6.2"

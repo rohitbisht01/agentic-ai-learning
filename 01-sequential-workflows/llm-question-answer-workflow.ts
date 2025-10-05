@@ -14,8 +14,9 @@ const QuestionAnswerAnnotation = Annotation.Root({
 
 type QuestionAnswerState = typeof QuestionAnswerAnnotation.State;
 
-const REGION = "us-east-1";
-const MODEL_ID = "anthropic.claude-3-haiku-20240307-v1:0";
+const REGION = process.env.REGION || "ap-south-1";
+const MODEL_ID = process.env.MODEL_ID || "default-model-id";
+
 async function callBedrockLLM(prompt: string): Promise<any> {
   const bedrockClient = new BedrockRuntimeClient({
     region: REGION,
